@@ -21,8 +21,8 @@ Window.GetMaxHeight = fun (){
 };
 
 anim.imagecount = 32;
-anim.target_width =  0.2* 0.46 * Window.GetWidth();
-anim.target_height =  0.2* 0.46 * Window.GetWidth();
+anim.target_width =  0.15* 0.46 * Window.GetWidth();
+anim.target_height =  0.15* 0.46 * Window.GetWidth();
 
 fun RotatedImage (index){
 	index = Math.Int(index);
@@ -58,13 +58,13 @@ else {
 }
 
 ratio =  logo.original_image.GetWidth() / logo.original_image.GetHeight();
-reduction = 0.4;
+reduction = 0.2;
 logo.image = logo.original_image.Scale(reduction * Window.GetMaxWidth() , reduction / ratio *  Window.GetMaxWidth());
 logo.sprite = SpriteNew();
 logo.sprite.SetImage(logo.image);
 logo.opacity_angle = 0;
 logo.sprite.SetX((Window.GetX() + Window.GetMaxWidth()  - logo.image.GetWidth())  / 2);
-logo.sprite.SetY(Window.GetY() + Window.GetHeight() * 0.37);
+logo.sprite.SetY(Window.GetY() + Window.GetHeight() * 0.42);
 
 background.image = background.original_image.Scale(Window.GetMaxWidth() , Window.GetMaxHeight());
 background.sprite = SpriteNew();
@@ -207,14 +207,17 @@ Plymouth.SetMessageFunction(display_message_callback);
 
 #----------------------------------------- Progress Bar --------------------------------
 
-progress_box.image = Image("progress_box.png");
+progress_box.og_before_stretch_image = Image("progress_box.png");
+
+progress_box.image = Image("progress_box.png").Scale(progress_box.og_before_stretch_image.GetWidth() * 1.4, progress_box.og_before_stretch_image.GetHeight());
 progress_box.sprite = Sprite(progress_box.image);
 
 progress_box.x = Window.GetX() + Window.GetWidth() / 2 - progress_box.image.GetWidth() / 2;
 progress_box.y = Window.GetY() + Window.GetHeight() * 0.65 - progress_box.image.GetHeight() / 2;
 progress_box.sprite.SetPosition(progress_box.x, progress_box.y, 0);
 
-progress_bar.original_image = Image("progress_bar.png");
+progress_bar.original_image_before_stretch = Image("progress_bar.png");
+progress_bar.original_image = Image("progress_bar.png").Scale(progress_bar.original_image_before_stretch.GetWidth() * 1.4, progress_bar.original_image_before_stretch.GetHeight());
 progress_bar.sprite = Sprite();
 
 progress_bar.x = Window.GetX() + Window.GetWidth()  / 2 -        progress_bar.original_image.GetWidth() / 2;
